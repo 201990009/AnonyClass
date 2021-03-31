@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button mButton1;
+    Button mButton2;
     TextView mTextView;
 
 
@@ -18,18 +19,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mButton1 = findViewById(R.id.button1);
+        mButton2 = findViewById(R.id.button2);
         mTextView = findViewById(R.id.textView);
 
-        mButton1.setOnClickListener(new View.OnClickListener() {
+        mButton1.setOnClickListener(this);
+        mButton2.setOnClickListener(this);
+    }
             @Override
             public void onClick(View v) {
-                mTextView.setText("You clicked button 1");
+                switch(v.getId())
+                {
+                    case R.id.button1: mTextView.setText("You clicked button 1");
+                    break;
+                    case R.id.button2: mTextView.setText("You clicked button 2");
+                    break;
+                    default: break;
+                }
             }
-
-            ;
-
-        });
-
-
     }
-}
